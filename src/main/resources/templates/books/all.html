@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head">
+</head>
+<body>
+<header th:replace="fragments/header"></header>
+<section class="container">
+
+    <div class="card-container">
+        <div class="cardClass" th:each="book: ${books}">
+            <div class="img">
+                <img th:alt="${title} + 'cover image'" th:src="${book.imageURL}" class="card-image"/>
+            </div>
+
+            <div class="card-body">
+                <div class="card-text-body">
+                    <span class="card-title" th:text="${book.title}"></span>
+                    <span th:text="${'By ' + book.author}"></span>
+                    <span th:text="${book.category}"></span>
+                    <br>
+                    <b><span>Review</span></b>
+                    <span th:class="review" th:text="${book.review}"></span>
+                    <div class="edit-btn">
+                        <a class="create" th:href="'/books/edit/'+${book.id}" >
+                            <button class="edit-book">Edit</button>
+                        </a>
+                        <a class="delete" th:href="'/books/delete/'+${book.id}" >
+                            <button class="delete-book">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="fragments/footer"></footer>
+</body>
+
